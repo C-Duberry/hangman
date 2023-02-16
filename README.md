@@ -30,13 +30,13 @@ Guess the correct secret word before you run out of chances. You have 8 chances 
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/C-Duberry/hangman.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd hangman
 ```
 
 Install dependencies
