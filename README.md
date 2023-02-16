@@ -1,7 +1,8 @@
 
 # Hangman 
 
-A less morbid twist on the classic Hangman game. Built using React and Redux Toolkit. 
+A less morbid twist on the classic Hangman game. 
+Built using React and Redux Toolkit. 
 
 
 
