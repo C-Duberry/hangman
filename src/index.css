@@ -1,5 +1,7 @@
 body {
+  background-color: white;
   margin: 0;
+  min-width: 350px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +12,469 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/*game container 
+
+Image, wrong letter box and reset button. 
+display flex, content justified centre.*/
+
+.game-container {
+  display: flex;
+  justify-content: center;
+
+}
+
+/*Container for the wrong letters and reset button.
+A 1px border and container width of 20%. Height set 
+to match image.*/
+
+.wrong-reset {
+  border: 1px dashed grey;
+  width: 20%;
+  height: 449px;
+}
+
+/*Container that contains the wrong letters. The font 
+family set to match the rest of the app's font. Font
+size set at 1.6rem, and letter spacing of 3px to fit the 
+space and be clear. */
+
+.wrongLetters-box {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Chewy', cursive;
+  letter-spacing: 3px;
+  font-size: 1.60rem;
+  width: 70%;
+  border: 1px solid grey;
+
+  margin: auto;
+  margin-bottom: 30px;
+  margin-top: 20px;
+
+  border-radius: 5px;
+  max-height: 150px;
+}
+
+/*Default list padding removed.*/
+
+ul {
+  padding-left: 0px;
+
+}
+
+/*Wrong letter list changed to display inline, given 
+a blue colour.  */
+
+.wrongLetters>li {
+  display: inline;
+  color: #2980b9;
+}
+
+/*Styling for the help button*/
+
+.help-btn {
+  background-color: white;
+  color: #2980b9;
+  margin-left: 10px;
+}
+
+/*Styling for the close help button*/
+
+.close-help {
+  background-color: #fff;
+  color: #2980b9;
+  height: 36px;
+  margin-top: 10px;
+}
+
+/*Styling for the help box popup. Height set to 
+match the image height. Width set to 170% to fit in
+the text. Background colour set to blue with white text.*/
+
+.help-box {
+  display: block;
+  margin: auto;
+  width: 170%;
+  height: 444px;
+  color: white;
+  background-color: #2980b9;
+  border: 3px solid #2980b9;
+  box-shadow: -1px 2px 5px -2px rgba(105, 99, 105, 1);
+}
+
+/*Help box heading set to white*/
+
+.help-box>h4 {
+  color: white;
+}
+
+/*Help box paragraph set white and font family to Trebuchet for
+clarity. Padding and margin given to have space around the text.*/
+
+.help-box>p {
+  font-size: 0.9rem;
+  text-align: left;
+  margin-left: 20px;
+  padding-right: 20px;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/*The hangman rules bullet point is set to a balloon Unicode character.*/
+
+.hangmanRules-list> ::marker {
+  content: "\1F388";
+}
+
+/*Hangman rules list set to align left and given the same font as the 
+paragraph for clarity. Margin set to align itself. */
+
+.hangmanRules-list {
+  text-align: left;
+  margin: auto;
+  padding-left: 30px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/*For the rules list, each list item is given padding and font size set to  0.8rem.. */
+
+.hangmanRules-list li {
+  padding: 2px;
+  font-size: 0.8rem;
+}
+
+/*Fonts set using Google fonts. The headings are set to an off-black colour and paragraph set to blue, 
+they have letter spacing because of the font's cursive nature. The paragraph font is set to blue.  */
+
+h4 {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Chewy', cursive;
+  font-size: 1.7rem;
+  letter-spacing: 4px;
+  color: rgb(42, 42, 42);
+  margin-bottom: 0px;
+}
+
+h1 {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Chewy', cursive;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  color: rgb(42, 42, 42);
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+p {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Chewy', cursive;
+  font-size: 1.2rem;
+  color: #2980b9;
+}
+
+/*Universal button styling - background colour set
+to light blue, height to 50px and colour to white. 
+Slight box-shadow and slight border-radius. */
+
+button {
+  background-color: #2980b9;
+  margin-top: 10px;
+  height: 45px;
+  border: none;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: -1px 2px 5px -2px rgba(105, 99, 105, 1);
+}
+
+/*Styling for the word. 
+
+A border is added with a margin to create the traditional hangman guessing
+line. The font family is set to match the rest of the fonts. */
+
+.word {
+  margin-bottom: 10px;
+}
+
+.game-letters {
+  border-bottom: 3px solid #2980b9;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Chewy', cursive;
+  color: rgb(42, 42, 42);
+  display: inline-flex;
+  font-size: 30px;
+  align-items: end;
+  justify-content: center;
+  margin: 0 3px;
+  height: 50px;
+  width: 20px;
+}
+
+/*Styling for the popup container that appears at the
+end of the game. The background is a transparent 
+black to dull the screen. The display is changed to flex when the 
+popup box is called, otherwise, it is set to not display. */
+
+.popup-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+}
+
+/*Styling for the popup block. Background set to white, font is set to match 
+other font and the colour is set to blue. The position is set as to not cover the final image. */
+
+.popup {
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Chewy', cursive;
+  font-size: 1rem;
+  color: #2980b9;
+  letter-spacing: 2px;
+  position: relative;
+  left: 30px;
+  background-color: #fff;
+  width: 20%;
+  padding-right: 20px;
+}
+
+/*The popup play again button styling. Background colour is set to blue
+and the font is set to white with a font-size of 16px. */
+
+.popup button {
+  cursor: pointer;
+  background-color: #2980b9;
+  color: white;
+  border: 0;
+  margin-top: 0px;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+/*The notification (informing the user of a repeat letter) is set to display 
+none, but the class name changes to add show when the component is called, then 
+it is set to display contents. */
+
+.notification-container {
+  display: none;
+}
+
+.notification-container.show {
+  display: contents;
+}
+
+/*At a max-width of 1000px the help and reset
+buttons are changed to column direction and 
+the font size in the help box is made smaller to
+fit in a smaller space. A margin is added to the right
+of the game-container.*/
+
+@media screen and (max-width: 1000px) {
+  .game-container {
+    margin: auto;
+    margin-right: 50px;
+  }
+
+  .wrongLetters-box {
+    margin-bottom: 10px;
+  }
+
+  .wrong-reset>p {
+    margin: 0px;
+  }
+
+  .wrong-reset-buttons {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+    margin-top: 0px;
+  }
+
+  .wrong-reset-buttons>button {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 7px;
+  }
+
+  p.countdown {
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  .hangmanRules-list li {
+    font-size: 0.7rem;
+  }
+
+  .help-box>p {
+    font-size: 0.7rem;
+  }
+
+  .help-box {
+    margin-right: 50px;
+  }
+
+  .help-box>h4 {
+    margin-top: 5px;
+    font-size: 1.5rem;
+  }
+}
+
+/*At a max-width of 650px, the wrong letters container/ helpbox
+is set to go underneath the image but made small so everything fits
+onscreen. */
+
+@media screen and (max-width: 650px) {
+  .game-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0em;
+    margin: auto;
+    margin-right: 0px;
+  }
+
+  /* Wrong letter box changed to a grid with the wrong letters on top and the counter, reset and close
+buttons on the bottom.*/
+
+  .wrong-reset {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 150px;
+    min-width: 300px;
+    grid-template-areas:
+      "letters letters"
+      "count  buttons";
+    margin: auto;
+  }
+
+  .wrongLetters-box {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    max-height: 30px;
+    min-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    margin-top: 5px;
+  }
+
+  .wrong-letters {
+    grid-area: letters;
+  }
+
+  /*Reset and help buttons changed back to a row
+  flex-direction. */
+
+  .wrong-reset-buttons {
+    padding-top: 5px;
+    grid-area: buttons;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+
+  button {
+    font-size: 8pt;
+    margin-left: 50px;
+    height: 40px;
+  }
+
+  .help-box {
+    height: auto;
+    width: 294px;
+  }
+
+  /*Close help box button is set to be 
+  on the right side of the help box.*/
+
+  .close-help {
+    height: 30px;
+    margin-top: 0px;
+    float: right;
+    padding-bottom: 8px;
+  }
+
+
+  /*Text within the help box and wrong letters box made smaller 
+  to fit in their containers but still be readable.*/
+
+  .hangmanRules-list li {
+    padding: 2px;
+    font-size: 1.2vh
+  }
+
+  .help-box>p {
+    font-size: 1.5vh;
+  }
+
+  h4 {
+    margin-top: 5px;
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin-bottom: 2px;
+    margin-top: 2px;
+  }
+
+  .countdown-box {
+    padding-top: 5px;
+    grid-area: count;
+
+  }
+
+  p.countdown {
+    margin-top: 3px;
+  }
+
+  img {
+    width: 300px;
+    height: 350px;
+    margin-bottom: 0px;
+  }
+
+  /*Resume game message set to 
+  display none at this width as 
+  it would take up too much space.*/
+
+  .user-message {
+    display: none;
+  }
+
+  /*End of game popup changed to transparent with
+  white text, so the end image can still be seen. */
+
+  .popup {
+    background: transparent;
+    color: white;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 120px;
+    margin-right: 50px;
+  }
+
+  .popup>button {
+    margin-right: 50px;
+    font-size: 12px;
+  }
+
+  .start {
+    margin: auto;
+  }
+
 }
