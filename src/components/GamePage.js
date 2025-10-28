@@ -12,8 +12,9 @@ import { showNotification as show } from "../helpers/helpers";
 import Notification from "./Notification";
 import GameStatus from "./GameStatus";
 import ImageState from "./ImageState";
+import OnScreenKeyboard from "./OnScreenKeyboard";
 import Help from "./Help";
-
+import Header from "./Header";
 const options = {
   method: "GET",
   headers: {
@@ -31,7 +32,7 @@ const GamePage = () => {
   const [startGame, setStartGame] = useState(false);
   const [buttonAvailable, setButtonAvailable] = useState(true);
   const [getHelp, setGetHelp] = useState(false);
-  const [userMessage, setUserMessage] = useState("Click to start game");
+
   const dispatch = useDispatch();
   let resume = "Click close to resume";
 
@@ -67,7 +68,6 @@ The buttonAvailable is set to false, which removes the start button from the app
   const helpPage = () => {
     setGetHelp(true);
     setGamePlayable(false);
-    setUserMessage(resume);
   };
 
   /*Use effects */
@@ -79,17 +79,16 @@ The buttonAvailable is set to false, which removes the start button from the app
     const getData = async () => {
       try {
         const request = await fetch(
-          "https://random-word-by-api-ninjas.p.rapidapi.com/v1/randomword",
-          options
-        );
+          "https://random-word-api.vercel.app/api?words=1");
         const response = await request.json();
-        const gameWord = response.word.toLowerCase();
-        setGameWord(gameWord);
+        const gameWord = response
+        setGameWord(gameWord[0].toLowerCase());
       } catch (error) {
         alert("Cannot handle request at this time.");
         console.log(error);
       }
     };
+    console.log(gameWord)
     getData();
   }, []);
 
@@ -102,32 +101,40 @@ The buttonAvailable is set to false, which removes the start button from the app
     enters, a notification is displayed to inform them that they have already used the letter. This use
     effect is triggered at the start of the game or when a correct/incorrect letter is entered.  */
 
-  useEffect(() => {
+    const handleGuess = (letter) => {
+    if (!gamePlayable) return;
+
+    if (gameWord.includes(letter)) {
+      if (!correctLetters.includes(letter)) {
+        dispatch(winningLetters(letter));
+        setCorrectLetters((prev) => [...prev, letter]);
+      } else {
+        show(setShowNotification);
+      }
+    } else {
+      if (!incorrectLetters.includes(letter)) {
+        dispatch(losingLetters(letter));
+        setIncorrectLetters((prev) => [...prev, letter]);
+      } else {
+        show(setShowNotification);
+      }
+    }
+  };
+  
+  
+  
+useEffect(() => {
     const handleKeydown = (event) => {
       const { key, keyCode } = event;
       if (gamePlayable && keyCode >= 65 && keyCode <= 90) {
-        const letter = key.toLowerCase();
-        if (gameWord.includes(letter)) {
-          if (!correctLetters.includes(letter)) {
-            dispatch(winningLetters(letter));
-            setCorrectLetters((currentLetters) => [...currentLetters, letter]);
-          } else {
-            show(setShowNotification);
-          }
-        } else {
-          if (!gameWord.includes(letter))
-            if (!incorrectLetters.includes(letter)) {
-              dispatch(losingLetters(letter));
-              setIncorrectLetters((currentLetters) => [...currentLetters, letter,]);
-            } else {
-              show(setShowNotification);
-            }
-        }
+        handleGuess(key.toLowerCase());
       }
     };
+
     window.addEventListener("keydown", handleKeydown);
     return () => window.removeEventListener("keydown", handleKeydown);
-  }, [gameStart, correctLetters, incorrectLetters, gamePlayable]);
+  }, [gamePlayable, correctLetters, incorrectLetters]);
+
 
   /*Within the return there is the image component, the help component, which is only shown 
 if getHelp is set to true, The wrongLetters component and the buttons for reset and 
@@ -136,67 +143,76 @@ is shown using the map method, which returns the letters only if they are in the
 array.  The return also includes the notification component and gameStatus component. The start
 button is only shown if the game has not started. */
 
-  return (
-    <div>
-      <div className="container">
-        <div className="game-container">
-          <ImageState wrongLetters={incorrectLetters} />
-          <div className="wrong-reset">
-            {getHelp ? (
-              <Help
-                setUserMessage={setUserMessage}
-                userMessage={userMessage}
-                buttonAvailable={buttonAvailable}
-                setGetHelp={setGetHelp}
-                setGamePlayable={setGamePlayable}
-              />
-            ) : (
-              <>
-                <WrongLetters
-                  gamePlayable={gamePlayable}
-                  wrongLetters={incorrectLetters}
-                  buttonAvailable={buttonAvailable}
-                />
-                <div className="wrong-reset-buttons">
-                  <button className="reset-btn" onClick={playAgain}>
-                    Reset Game
-                  </button>
-                  <button onClick={helpPage} className="help-btn">
-                    Help
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-        {startGame && !getHelp ? (
-          <div className="word">
-            {gameWord.split("").map((letter, index) => {
-              return (
-                <span className="game-letters" key={index}>
-                  {correctLetters.includes(letter) ? letter : ""}
-                </span>
-              );
-            })}
-            <Notification
-              showNotification={showNotification}
+return (
+  <div className="main-container">
+    <Header />
+
+    <div className="game-container">
+      <ImageState wrongLetters={incorrectLetters} />
+      <div className="wrong-reset">
+        {getHelp ? (
+          <Help
+            buttonAvailable={buttonAvailable}
+            setGetHelp={setGetHelp}
+            setGamePlayable={setGamePlayable}
+          />
+        ) : (
+          <>
+            <WrongLetters
               gamePlayable={gamePlayable}
+              wrongLetters={incorrectLetters}
+              buttonAvailable={buttonAvailable}
             />
-          </div>
-        ) : (
-          <h4 className={gamePlayable ? "user-message" : ""}>{userMessage}</h4>
-        )}
-        {buttonAvailable ? (
-          <button className="start" onClick={gameStart}>
-            Start Game
-          </button>
-        ) : (
-          <></>
+            <div className="wrong-reset-buttons">
+              <button className="reset-btn" onClick={playAgain}>
+                Reset Game
+              </button>
+              <button onClick={helpPage} className="help-btn">
+                Help
+              </button>
+            </div>
+          </>
         )}
       </div>
-      <GameStatus setGamePlayable={setGamePlayable} playAgain={playAgain} />
     </div>
-  );
+
+    {startGame && !getHelp && (
+      <>
+        <div className="word">
+          {gameWord.split("").map((letter, index) => (
+            <span className="game-letters" key={index}>
+              {correctLetters.includes(letter) ? letter : ""}
+            </span>
+          ))}
+
+          <Notification
+            showNotification={showNotification}
+            gamePlayable={gamePlayable}
+          />
+        </div>
+
+        {/* 👇 On-screen keyboard for mobile only */}
+        {window.innerWidth < 700 && gamePlayable && (
+          <OnScreenKeyboard
+            handleGuess={handleGuess}
+            correctLetters={correctLetters}
+            incorrectLetters={incorrectLetters}
+            disabled={!gamePlayable}
+          />
+        )}
+      </>
+    )}
+
+    {buttonAvailable && (
+      <button className="start" onClick={gameStart}>
+        Start Game
+      </button>
+    )}
+
+    <GameStatus setGamePlayable={setGamePlayable} playAgain={playAgain} />
+  </div>
+);
+
 };
 
 export default GamePage;

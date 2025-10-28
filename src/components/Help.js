@@ -13,7 +13,7 @@ const Help = ({setGetHelp, setGamePlayable, setUserMessage, buttonAvailable}) =>
     "You start with 8 balloons.",
   ];
 
-  let userMessageAfterHelp = "Click to start game";
+  // let userMessageAfterHelp = "Click to start game";
 
   /*The map method is used to map through the array and convert the rules into a list.  */
 
@@ -32,9 +32,9 @@ const Help = ({setGetHelp, setGamePlayable, setUserMessage, buttonAvailable}) =>
   const closeHelp = () => {
     setGetHelp(false);
     setGamePlayable(true);
-    if (buttonAvailable) {
-      setUserMessage(userMessageAfterHelp);
-    }
+    // if (buttonAvailable) {
+    //   setUserMessage(userMessageAfterHelp);
+    // }
   };
 
   /* The return includes a paragraph on the main aim of the game, the hangman list and the close button with an

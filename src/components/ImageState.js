@@ -1,13 +1,13 @@
 import React from "react";
-import state1 from "../images/state1.GIF";
-import state2 from "../images/state2.GIF";
-import state3 from "../images/state3.GIF";
-import state4 from "../images/state4.GIF";
-import state5 from "../images/state5.GIF";
-import state6 from "../images/state6.GIF";
-import state7 from "../images/state7.GIF";
-import state8 from "../images/state8.GIF";
-import state9 from "../images/state9.GIF";
+import state1 from "../images/WebP/state1.webp";
+import state2 from  "../images/WebP/state2.webp";
+import state3 from  "../images/WebP/state3.webp";
+import state4 from  "../images/WebP/state4.webp";
+import state5 from  "../images/WebP/state5.webp";
+import state6 from  "../images/WebP/state6.webp";
+import state7 from  "../images/WebP/state7.webp";
+import state8 from  "../images/WebP/state8.webp";
+import state9 from  "../images/WebP/state9.webp";
 import { useSelector } from "react-redux";
 
 /*Rather than doing hangman I have used the same principle but with chosen a stickman hanging on to balloons. 

@@ -20,15 +20,13 @@ Notification - a component for whether a letter is repeated.
 WrongLetter - a component for what happens when an incorrect letter is played.   */
 
 import "./App.css";
-import Header from "./components/Header";
 import GamePage from "./components/GamePage";
 
 function App() {
   return (
-      <div className="App">
-        <Header />
+      <>
         <GamePage />
-      </div>
+      </>
   );
 }
 
