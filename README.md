@@ -4,9 +4,6 @@
 A less morbid twist on the classic Hangman game. 
 Built using React and Redux Toolkit. 
 
-
-
-
 ## How to play
 
 Aim of the game:
@@ -24,6 +21,23 @@ Guess the correct secret word before you run out of chances. You have 8 chances 
 ## Screenshots
 
 <img src="screenshots/hangman-screenshot.PNG" width="400" height="300" /> <img src="screenshots/hangman-screenshot2.PNG" width="400" height="300" />
+
+## Features
+
+- Classic word-guessing gameplay  
+- Dynamic word selection  
+- Visual feedback for correct and incorrect guesses  
+- Responsive design for all devices  
+- Built with React for smooth and interactive updates  
+
+## Technologies Used
+
+- React  
+- JavaScript  
+- HTML  
+- CSS
+- Adobe Photoshop
+
 
 ## Installation
 
