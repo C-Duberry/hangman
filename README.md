@@ -54,7 +54,7 @@ Start the server
 
 ## Authors
 
-- [Charlotte.D](https://github.com/C-Duberry)
+ [Charlotte.D](https://github.com/C-Duberry)
 
 
 ## Acknowledgements
